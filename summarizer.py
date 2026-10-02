@@ -19,6 +19,9 @@ if os.path.isfile(arg):
 
 if len(sys.argv) > 2:
     sentences = sys.argv[2]
+    if not sentences.isdigit():
+        print("The number of sentences must be a whole number, like 3.")
+        sys.exit(1)
 else: 
     sentences = "2"
 
