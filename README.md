@@ -1,10 +1,13 @@
-# Summarizer
-
-A command-line tool that summarizes text using the Gemini API.
-
-## Setup
-1. Install dependencies: `pip install google-genai python-dotenv`
-2. Create a `.env` file containing `GEMINI_API_KEY=your_key`
-
 ## Usage
-py summarizer.py "your text here"
+
+Summarize text typed in the command:
+
+    py summarizer.py "your text here"
+
+Summarize a text file:
+
+    py summarizer.py "text file name with extension"
+
+Choose how many sentences (default is 2):
+
+    py summarizer.py "text or text file name with extension" "number of sentences"
