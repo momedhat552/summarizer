@@ -1,3 +1,4 @@
+![Tests](https://github.com/momedhat552/summarizer/actions/workflows/test.yml/badge.svg)
 # Summarizer
 
 A command-line tool that summarizes text using Google's Gemini API. It accepts text typed directly or a path to a text file, and you can choose how many sentences you want.
