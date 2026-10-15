@@ -1,41 +1,85 @@
-![Tests](https://github.com/momedhat552/summarizer/actions/workflows/test.yml/badge.svg)
-# Summarizer
+# Text Summarizer
 
-A command-line tool that summarizes text using Google's Gemini API. It accepts text typed directly or a path to a text file, and you can choose how many sentences you want.
+**Live demo:** https://momedhat552-summarizer-app-mdjxyv.streamlit.app/
 
-## Setup
+A Python tool that summarizes text using the Google Gemini API. Use it in the browser through a Streamlit web app, or from the command line.
 
-1. Install the dependencies:
+![App screenshot](screenshot.png)
 
-        pip install google-genai python-dotenv
+## Features
 
-2. Get a free API key from Google AI Studio (aistudio.google.com).
+- Summarize pasted text in the browser (Streamlit web app)
+- Choose the summary length (1-10 sentences) from the sidebar
+- Command-line version that accepts either text or a file path
+- Input validation and error handling for empty input, bad arguments and API failures
+- Automated tests with pytest and CI with GitHub Actions
 
-3. Create a file named `.env` in the project folder containing:
+## Tech stack
 
-        GEMINI_API_KEY=your_key_here
+Python, Google Gemini API, Streamlit, python-dotenv, pytest, GitHub Actions
 
-## Usage
+## Project structure
 
-Summarize text typed in the command:
+```
+summarizer/
+├── app.py              # Streamlit web app
+├── summarizer.py       # Core summarize() function and command-line interface
+├── requirements.txt
+├── tests/              # pytest tests
+└── README.md
+```
 
-    py summarizer.py "your text here"
+## Run locally
 
-Summarize a text file:
+1. Clone the repo and go into the folder:
 
-    py summarizer.py notes.txt
+```
+git clone https://github.com/momedhat552/<your-repo-name>.git
+cd <your-repo-name>
+```
 
-Choose how many sentences (default is 2):
+2. Install the dependencies:
 
-    py summarizer.py notes.txt 3
+```
+pip install -r requirements.txt
+```
 
-General form:
+3. Create a `.env` file in the project folder with your Gemini API key:
 
-    py summarizer.py <text or filename> [sentences]
+```
+GEMINI_API_KEY=your-key-here
+```
 
-## Notes
+4. Start the web app:
 
-- If the script reports that the model isn't found, model names change often. Update the `model=` line in `summarizer.py` to a current one. `list_models.py` prints the models available to your key.
-- If you get a 503 error, the model is busy. Wait a minute and try again.
-- Your `.env` file is listed in `.gitignore`, so your
+```
+streamlit run app.py
+```
 
+## Command-line usage
+
+```
+py summarizer.py "text or filename" [sentences]
+```
+
+- The first argument is either the text itself or the path to a `.txt` file.
+- The second argument is optional and sets the number of sentences (default: 2).
+
+Examples:
+
+```
+py summarizer.py "Python is a popular programming language." 1
+py summarizer.py article.txt 3
+```
+
+## Tests
+
+```
+pytest
+```
+
+Tests also run automatically on every push through GitHub Actions.
+
+## Deployment
+
+The web app is deployed on Streamlit Community Cloud. The API key is stored in the app's Secrets settings and is never committed to the repository.
